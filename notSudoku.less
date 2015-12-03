@@ -1,0 +1,214 @@
+@cellSize: 30px;
+@borderRadius: 2px;
+@thickBorder: 1px solid rgb(170, 170, 170);
+@thinBorder: 1px solid rgb(221, 221, 221);
+@noBorder: 0 none;
+@dirtyWhite: rgb(245, 245, 245);
+@lightGrey: rgb(210, 210, 210);
+@darkGrey: rgba(119, 119, 119, 1);
+@conflictRed: rgba(255, 97, 56, 1);
+@mintGreen: rgba(121, 189, 143,1);
+@mintGreenHighlight: lighten(@mintGreen, 10%);
+@fontFamily: 'Titillium Web';
+
+.noMarginOrPadding {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: @fontFamily, sans-serif;
+    font-size: 14px;
+    color: @darkGrey;
+
+    div {
+        text-align: center;
+
+        .container {
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .logo {
+            @whiteTransparent: rgba(255,255,255,0);
+
+            margin-bottom: 0.3rem;
+            font-size: 2em;
+            font-weight: bold;
+            color: @dirtyWhite;
+            padding-top: 2rem;
+            padding-bottom: 0.2rem;
+            border-radius: @borderRadius;
+
+            background: -moz-linear-gradient(top, @whiteTransparent 0%, @mintGreen 100%);
+            background: -webkit-linear-gradient(top, @whiteTransparent 0%, @mintGreen 100%);
+            background: linear-gradient(to bottom, @whiteTransparent 0%, @mintGreen 100%);
+
+            span {
+                color: @conflictRed;
+            }
+        }
+
+        .game {
+            width: @cellSize * 9;
+            display: inline-block;
+        }
+
+        .controls {
+            margin-top: 0.3rem;
+        }
+
+        .note {
+            font-size: 0.8em;
+            width: inherit - 2px;
+            border-radius: @borderRadius;
+            border: 1px solid @lightGrey;
+            color: @lightGrey;
+            text-align: left;
+            margin-top: 1rem;
+            padding: 10px;
+        }
+    }
+
+    input, button {
+        font-family: @fontFamily, sans-serif;
+        font-size: 1em;
+        color: @darkGrey;
+    }
+
+    input {
+        .noMarginOrPadding();
+
+        box-sizing: border-box;
+        border-left: @thinBorder;
+        border-top: @thinBorder;
+        border-right: @noBorder;
+        border-bottom: @noBorder;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+
+        &:disabled {
+            background: rgb(255, 255, 220);
+        }
+
+        .conflict {
+            color: @conflictRed;
+
+            &:disabled {
+                background: rgb(255, 238, 238);
+            }
+        }
+    }
+
+    button {
+        margin-bottom: 1px;
+        width: 100%;
+        color: @dirtyWhite;
+        background-color: @mintGreen;
+        padding: 10px 20px 10px 20px;
+        border: @noBorder;
+        border-radius: @borderRadius;
+
+        &:hover {
+            background-color: @mintGreenHighlight;
+            color: rgb(255,255,255);
+        }
+    }
+
+    table {
+        border: @noBorder;
+        border-collapse: collapse;
+
+        tr{
+            td {
+                .noMarginOrPadding();
+
+                box-sizing: border-box;
+                width: @cellSize;
+                height: @cellSize;
+                border: @noBorder;
+
+                &:nth-child(3n) {
+                    input {
+                        border-right: @thickBorder;
+                    }
+                }
+
+                &:nth-child(3n + 1) {
+                    input {
+                        border-left: @thickBorder;
+                    }
+                }
+
+                &:first-child {
+                    input {
+                        border-left: @thinBorder;
+                    }
+                }
+
+                &:last-child {
+                    input {
+                        border-right: @thinBorder;
+                    }
+                }
+            }
+
+            &:nth-child(3n)  {
+                td {
+                    input {
+                        border-bottom: @thickBorder;
+                    }
+                }
+            }
+
+            &:nth-child(3n + 1) {
+                td {
+                    input {
+                        border-top: @thickBorder;
+                    }
+                }
+            }
+
+            &:first-child {
+                td {
+                    input {
+                        border-top: @thinBorder;
+                    }
+
+                    &:first-child {
+                        input {
+                            border-top-left-radius: @borderRadius;
+                        }
+                    }
+
+                    &:last-child {
+                        input {
+                            border-top-right-radius: @borderRadius;
+                        }
+                    }
+                }
+            }
+
+            &:last-child {
+                td {
+                    input {
+                        border-bottom: @thinBorder;
+                    }
+
+                    &:first-child {
+                        input {
+                            border-bottom-left-radius: @borderRadius;
+                        }
+                    }
+
+                    &:last-child {
+                        input {
+                            border-bottom-right-radius: @borderRadius;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
